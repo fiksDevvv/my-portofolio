@@ -1,0 +1,176 @@
+/* 1. Variables & Global Resets */
+:root {
+    --primary-color: #00a8e8;
+    --secondary-color: #007ea7;
+    --background-color: #121212;
+    --surface-color: #1e1e1e;
+    --text-color: #e0e0e0;
+    --heading-color: #ffffff;
+    --font-family: 'Poppins', sans-serif;
+    --glow-color: rgba(0, 168, 232, 0.4);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { 
+    font-family: var(--font-family); 
+    background-color: var(--background-color); 
+    color: var(--text-color); 
+    line-height: 1.7; 
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--background-color); }
+::-webkit-scrollbar-thumb { background: var(--surface-color); border-radius: 5px; border: 2px solid var(--background-color); }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+
+/* 2. Reusable Components */
+.container { max-width: 1100px; margin: auto; padding: 4rem 2rem; position: relative; z-index: 2; }
+.section-title { 
+    text-align: center; 
+    font-size: 2.8rem; 
+    margin-bottom: 3rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--primary-color), #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+.btn { display: inline-block; margin-top: 1rem; padding: 0.8rem 2rem; background: var(--primary-color); color: #fff; text-decoration: none; border-radius: 5px; transition: all 0.3s ease; border: 2px solid var(--primary-color); font-weight: 600; }
+.btn:hover { background: var(--secondary-color); border-color: var(--secondary-color); transform: translateY(-3px); }
+.btn-secondary { background: transparent; color: var(--primary-color); }
+.btn-secondary:hover { background: var(--primary-color); color: #fff; }
+
+/* 3. Header & Navigation */
+header { background: rgba(18, 18, 18, 0.5); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; padding: 1rem 2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; }
+.nav-links { list-style: none; display: flex; }
+.nav-links li { margin-left: 2.5rem; }
+.nav-links a { color: var(--text-color); text-decoration: none; font-weight: 500; transition: color 0.3s ease, border-bottom-color 0.3s ease; padding-bottom: 5px; border-bottom: 2px solid transparent; }
+.nav-links a:hover { color: var(--primary-color); }
+.nav-links a.active { color: var(--primary-color); border-bottom-color: var(--primary-color); }
+.hamburger { display: none; cursor: pointer; }
+.hamburger .line { width: 25px; height: 3px; background-color: var(--heading-color); margin: 5px; transition: all 0.3s ease; }
+
+/* 4. Page Specific Sections */
+#particles-js { position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; }
+.hero { min-height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; padding: 2rem; }
+.hero h1 { font-size: 3.5rem; color: var(--heading-color); margin-bottom: 1rem; }
+.hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 2rem auto; }
+.typing-effect::after { content: '|'; animation: blink 1s step-end infinite; color: var(--primary-color); }
+@keyframes blink { from, to { opacity: 1 } 50% { opacity: 0 } }
+
+/* -- Gaya Baru untuk Bagian Keahlian di Halaman Utama -- */
+.skills-section-home {
+    /* Menambahkan gambar latar belakang dengan lapisan gelap */
+    background-image: 
+        linear-gradient(rgba(18, 18, 18, 0.92), rgba(18, 18, 18, 0.92)), 
+        url('images/hero-background.jpg');
+    
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efek parallax yang keren */
+    
+    /* Padding tetap sama, ditambah garis pemisah halus */
+    padding: 5rem 2rem;
+    border-top: 1px solid var(--surface-color);
+    border-bottom: 1px solid var(--surface-color);
+}
+.skills-grid-home { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.skill-item-home { text-align: center; padding: 2rem; background-color: var(--background-color); border: 1px solid #2a2a2a; border-radius: 8px; }
+.skill-item-home h3 { color: var(--primary-color); margin-bottom: 1rem; }
+
+.preview-section, .page-header + .container { padding-top: 5rem; }
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+.project-card { background: rgba(44, 44, 44, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.4s ease; }
+.project-card:hover { transform: translateY(-5px); box-shadow: 0 0 20px var(--glow-color); border-color: rgba(0, 168, 232, 0.5); }
+.project-card img { width: 100%; height: 200px; object-fit: cover; }
+.project-info { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+.project-info h3 { color: var(--heading-color); margin-bottom: 0.5rem; }
+.project-info p { flex-grow: 1; }
+
+.about-page-content { padding-top: 0; }
+.about-flex { display: flex; gap: 3rem; align-items: center; margin-bottom: 4rem; }
+.about-image-container { flex: 1; text-align: center; }
+.about-page-image { width: 100%; max-width: 350px; height: auto; border-radius: 10px; border: 3px solid var(--surface-color); }
+.about-text-container { flex: 2; }
+.about-text-container h2 { color: var(--primary-color); margin-bottom: 1rem; }
+.skills-section { margin-top: 4rem; }
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
+.skill-category { background: var(--surface-color); padding: 2rem; border-radius: 8px; }
+.skill-category h3 { color: var(--primary-color); margin-bottom: 1rem; }
+.skill-category ul { list-style: none; padding-left: 0; }
+.skill-category li { margin-bottom: 0.5rem; }
+
+.social-links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+.social-card { background-color: rgba(44, 44, 44, 0.4); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 2.5rem 2rem; text-align: center; text-decoration: none; color: var(--text-color); transition: all 0.4s ease; }
+.social-card:hover { transform: translateY(-5px); box-shadow: 0 0 15px var(--glow-color); border-color: rgba(0, 168, 232, 0.5); }
+.social-icon { margin-bottom: 1rem; }
+.social-icon svg { width: 48px; height: 48px; stroke: var(--primary-color); stroke-width: 1.5; }
+.social-card h3 { color: var(--heading-color); font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+/* 5. Footer */
+footer { text-align: center; padding: 2rem; margin-top: 4rem; position: relative; z-index: 2; color: #888; }
+
+/* 6. Animations & Responsive */
+.animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+/* GANTIKAN BLOK @media LAMA ANDA DENGAN YANG INI SECARA KESELURUHAN */
+
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: 70%; /* Dibuat sedikit lebih lebar */
+        background: var(--surface-color);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10; /* Pastikan di atas hamburger */
+
+        /* LOGIKA BARU: Sembunyikan di luar layar kanan */
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in-out;
+    }
+
+    /* LOGIKA BARU: Munculkan saat aktif */
+    .nav-links.nav-active {
+        transform: translateX(0);
+    }
+
+    .nav-links li {
+        margin: 2rem 0; /* Beri jarak vertikal antar menu */
+    }
+
+    .hamburger {
+        display: block;
+        z-index: 11; /* Pastikan di atas menu */
+    }
+    
+    /* Tambahkan gaya untuk animasi ikon hamburger menjadi 'X' */
+    .toggle .line:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .toggle .line:nth-child(2) {
+        opacity: 0;
+    }
+    .toggle .line:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Penyesuaian lain untuk mobile */
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .about-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+}
